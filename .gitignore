@@ -1,0 +1,91 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.so
+
+# =========================
+# Virtual Environments
+# =========================
+venv/
+env/
+ENV/
+.venv/
+.env/
+.env.*
+
+# =========================
+# Logs
+# =========================
+*.log
+logs/
+nohup.out
+
+# =========================
+# OS / Editor files
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# Build / Distribution
+# =========================
+build/
+dist/
+.eggs/
+*.egg-info/
+*.egg
+
+# =========================
+# Testing / Coverage
+# =========================
+htmlcov/
+.coverage
+.coverage.*
+.pytest_cache/
+.tox/
+nosetests.xml
+coverage.xml
+
+# =========================
+# FastAPI / Uvicorn
+# =========================
+*.sqlite3
+*.db
+uvicorn.log
+
+# =========================
+# Jupyter
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# Secrets / Credentials
+# =========================
+*.pem
+*.key
+secrets.json
+credentials.json
+
+# =========================
+# Zip / Archives
+# =========================
+*.zip
+*.tar
+*.tar.gz
+*.rar
+
+# =========================
+# Runtime / Temp
+# =========================
+tmp/
+temp/
+.cache/
