@@ -4,3 +4,7 @@ python-multipart
 pydantic>=2
 python-dateutil
 pytz
+pytesseract
+pillow
+pdf2image
+
