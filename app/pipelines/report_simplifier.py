@@ -19,9 +19,10 @@ def run_report_pipeline(
     input_type: str,
     text: str | None,
     image_base64: str | None,
+    file_bytes: bytes | None = None,
 ) -> ReportPipelineResponse:
     # Step 1 - OCR/Text extraction
-    raw_text, conf = extract_text_from_input(input_type, text, image_base64)
+    raw_text, conf = extract_text_from_input(input_type, text, image_base64, file_bytes=None)
     if not raw_text:
         tests_raw: List[str] = []
         raw = RawTests(tests_raw=tests_raw, confidence=0.0)

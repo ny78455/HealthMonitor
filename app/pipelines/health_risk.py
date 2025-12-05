@@ -37,9 +37,10 @@ def run_health_risk_pipeline(
     input_type: str,
     text: str | None,
     image_base64: str | None,
+    file_bytes: bytes | None = None,
 ) -> HealthPipelineResponse:
     # Step 1 - OCR/Text Parsing
-    raw_text, conf = extract_text_from_input(input_type, text, image_base64)
+    raw_text, conf = extract_text_from_input(input_type, text, image_base64, file_bytes=None)
     answers = parse_answers(raw_text) if raw_text else {}
     missing = [f for f in REQUIRED_FIELDS if f not in answers or answers[f] in ("", None)]
     profile_conf = 0.92 if not missing else 0.7

@@ -19,9 +19,10 @@ def run_amount_pipeline(
     input_type: str,
     text: str | None,
     image_base64: str | None,
+    file_bytes: bytes | None = None,
 ) -> AmountPipelineResponse:
     # Step 1 - OCR/Text Extraction
-    raw_text, conf = extract_text_from_input(input_type, text, image_base64)
+    raw_text, conf = extract_text_from_input(input_type, text, image_base64, file_bytes=None)
     tokens = extract_amount_tokens(raw_text) if raw_text else []
     currency_hint = detect_currency_hint(raw_text) if raw_text else None
     raw = RawTokens(

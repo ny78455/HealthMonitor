@@ -19,9 +19,10 @@ def run_appointment_pipeline(
     input_type: str,
     text: str | None,
     image_base64: str | None,
+    file_bytes: bytes | None = None,
 ) -> AppointmentPipelineResponse:
     # Step 1 - OCR/Text Extraction
-    raw_text, conf = extract_text_from_input(input_type, text, image_base64)
+    raw_text, conf = extract_text_from_input(input_type, text, image_base64, file_bytes=None)
     raw = AppointmentRawText(raw_text=raw_text, confidence=conf)
 
     # Guardrail: no text -> needs clarification

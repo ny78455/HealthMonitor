@@ -14,6 +14,8 @@ from app.pipelines.report_simplifier import run_report_pipeline
 from app.pipelines.amount_detection import run_amount_pipeline
 from app.services.logging_config import configure_logging
 import logging
+from fastapi import UploadFile, File, Form
+
 
 logger = logging.getLogger(__name__)
 
@@ -101,6 +103,27 @@ async def process(req: ProcessRequest) -> PipelineResult:
         raise HTTPException(status_code=400, detail="problem_id must be between 1 and 4")
 
     return PipelineResult(problem_id=problem_id, result=result)
+
+@app.post("/process-file", response_model=PipelineResult)
+async def process_file(
+    problem_id: int = Form(...),
+    file: UploadFile = File(...),
+):
+    contents = await file.read()
+
+    if problem_id == 1:
+        result = run_appointment_pipeline("image", None, None, contents)
+    elif problem_id == 2:
+        result = run_health_risk_pipeline("image", None, None, contents)
+    elif problem_id == 3:
+        result = run_report_pipeline("image", None, None, contents)
+    elif problem_id == 4:
+        result = run_amount_pipeline("image", None, None, contents)
+    else:
+        raise HTTPException(status_code=400, detail="Invalid problem_id")
+
+    return PipelineResult(problem_id=problem_id, result=result)
+
 
 @app.get("/", include_in_schema=False)
 async def root():
